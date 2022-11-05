@@ -1,6 +1,6 @@
-package com.rmmcosta.deliveringflowers.data.delivery;
+package com.rmmcosta.deliveringflowers.data.delivery.entities;
 
-import com.rmmcosta.deliveringflowers.data.inventory.Plant;
+import com.rmmcosta.deliveringflowers.data.inventory.entities.Plant;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;

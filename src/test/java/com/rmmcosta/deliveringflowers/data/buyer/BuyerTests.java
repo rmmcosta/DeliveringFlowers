@@ -1,5 +1,7 @@
 package com.rmmcosta.deliveringflowers.data.buyer;
 
+import com.rmmcosta.deliveringflowers.data.buyer.entities.Buyer;
+import com.rmmcosta.deliveringflowers.data.buyer.entities.BuyerPK;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,11 +1,12 @@
 package com.rmmcosta.deliveringflowers;
 
 import com.rmmcosta.deliveringflowers.data.buyer.*;
-import com.rmmcosta.deliveringflowers.data.delivery.Delivery;
+import com.rmmcosta.deliveringflowers.data.buyer.entities.*;
+import com.rmmcosta.deliveringflowers.data.delivery.entities.Delivery;
 import com.rmmcosta.deliveringflowers.data.delivery.DeliveryRepository;
-import com.rmmcosta.deliveringflowers.data.inventory.Flower;
+import com.rmmcosta.deliveringflowers.data.inventory.entities.Flower;
 import com.rmmcosta.deliveringflowers.data.inventory.FlowerRepository;
-import com.rmmcosta.deliveringflowers.data.inventory.Shrub;
+import com.rmmcosta.deliveringflowers.data.inventory.entities.Shrub;
 import com.rmmcosta.deliveringflowers.data.inventory.ShrubRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -57,14 +58,14 @@ public class DeliveringflowersApplication {
 		flower.setName("Rosa");
 		flower.setColor("Red");
 		flower.setPrice(BigDecimal.valueOf(6.5));
-		flower.setDelivery_id(delivery);
+		flower.setDelivery(delivery);
 		flower = flowerRepository.save(flower);
 		Shrub shrub = new Shrub();
 		shrub.setHeight(100);
 		shrub.setWidth(500);
 		shrub.setName("Sebes");
 		shrub.setPrice(BigDecimal.valueOf(500));
-		shrub.setDelivery_id(delivery);
+		shrub.setDelivery(delivery);
 		shrubRepository.save(shrub);
 		BuyerPK buyerPK = new BuyerPK();
 		buyerPK.setName("Ricardo");

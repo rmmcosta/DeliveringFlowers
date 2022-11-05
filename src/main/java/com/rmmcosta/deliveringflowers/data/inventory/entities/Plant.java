@@ -1,6 +1,6 @@
-package com.rmmcosta.deliveringflowers.data.inventory;
+package com.rmmcosta.deliveringflowers.data.inventory.entities;
 
-import com.rmmcosta.deliveringflowers.data.delivery.Delivery;
+import com.rmmcosta.deliveringflowers.data.delivery.entities.Delivery;
 import lombok.Data;
 
 import javax.persistence.*;

@@ -1,4 +1,4 @@
-package com.rmmcosta.deliveringflowers.data.buyer;
+package com.rmmcosta.deliveringflowers.data.buyer.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

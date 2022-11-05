@@ -1,4 +1,4 @@
-package com.rmmcosta.deliveringflowers.data.inventory;
+package com.rmmcosta.deliveringflowers.data.inventory.entities;
 
 import lombok.Data;
 
