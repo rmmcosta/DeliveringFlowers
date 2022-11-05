@@ -19,5 +19,5 @@ public class Plant {
 
     @ManyToOne
     @JoinColumn(name = "delivery_id")
-    private Delivery delivery_id;
+    private Delivery delivery;
 }

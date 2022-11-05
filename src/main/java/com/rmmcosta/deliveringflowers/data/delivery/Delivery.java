@@ -25,6 +25,7 @@ public class Delivery {
     @Type(type = "yes_no")
     private boolean isCompleted;
 
-    @OneToMany(mappedBy = "delivery_id")
+    //fetch lazy by default
+    @OneToMany(mappedBy = "delivery")
     List<Plant> plants;
 }
