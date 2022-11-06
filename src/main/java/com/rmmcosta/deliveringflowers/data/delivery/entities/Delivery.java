@@ -1,5 +1,6 @@
 package com.rmmcosta.deliveringflowers.data.delivery.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rmmcosta.deliveringflowers.data.inventory.entities.Plant;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,5 +28,6 @@ public class Delivery {
 
     //fetch lazy by default
     @OneToMany(mappedBy = "delivery")
+    @JsonIgnore
     List<Plant> plants;
 }
