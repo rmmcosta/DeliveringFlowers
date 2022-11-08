@@ -24,8 +24,8 @@ public class PlantService {
         return plantRepository.save(plant);
     }
 
-    public void deletePlant(Plant plant) {
-        plantRepository.delete(plant);
+    public void deletePlant(Long id) {
+        plantRepository.deleteById(id);
     }
 
     public Long count() {

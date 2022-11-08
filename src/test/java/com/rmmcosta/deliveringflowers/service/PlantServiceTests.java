@@ -5,8 +5,9 @@ import com.rmmcosta.deliveringflowers.data.delivery.entities.Delivery;
 import com.rmmcosta.deliveringflowers.data.inventory.FlowerRepository;
 import com.rmmcosta.deliveringflowers.data.inventory.ShrubRepository;
 import com.rmmcosta.deliveringflowers.data.inventory.entities.Flower;
+import com.rmmcosta.deliveringflowers.data.inventory.entities.Plant;
 import com.rmmcosta.deliveringflowers.data.inventory.entities.Shrub;
-import com.rmmcosta.deliveringflowers.service.PlantService;
+import org.hibernate.LazyInitializationException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,8 +15,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class PlantServiceTests {
@@ -55,5 +57,24 @@ public class PlantServiceTests {
         shrub.setDelivery(delivery);
         shrubRepository.save(shrub);
         assertEquals(initPlantsCount + 2, plantService.count());
+    }
+
+    @Test
+    public void getPlantLazyLoadDelivery() {
+        Long initCount = plantService.count();
+        Plant plant = new Plant();
+        Delivery delivery = deliveryRepository.findAll().iterator().next();
+        assertThrows(LazyInitializationException.class, () -> {
+            System.out.println(delivery);
+        });
+        List<Plant> plantList = delivery.getPlants();
+        plant.setDelivery(delivery);
+        plant.setPrice(BigDecimal.valueOf(55.55));
+        plant.setName("Erva Daninha");
+        Plant savedPlant = plantService.savePlant(plant);
+        assertThrows(LazyInitializationException.class, () -> {
+            System.out.println(savedPlant);
+        });
+        Delivery associatedDelivery = savedPlant.getDelivery();
     }
 }

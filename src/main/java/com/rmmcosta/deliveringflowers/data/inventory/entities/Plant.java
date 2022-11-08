@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.rmmcosta.deliveringflowers.data.delivery.entities.Delivery;
 import com.rmmcosta.deliveringflowers.view.Views;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -22,7 +24,7 @@ public class Plant {
     @Column(precision = 12, scale = 4)
     private BigDecimal price;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_id")
     @JsonView(Views.Private.class)
     private Delivery delivery;

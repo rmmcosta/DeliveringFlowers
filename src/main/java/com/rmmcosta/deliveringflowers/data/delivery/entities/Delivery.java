@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rmmcosta.deliveringflowers.data.inventory.entities.Plant;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.Type;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -27,7 +30,7 @@ public class Delivery {
     private boolean isCompleted;
 
     //fetch lazy by default
-    @OneToMany(mappedBy = "delivery")
+    @OneToMany(mappedBy = "delivery", cascade = CascadeType.REMOVE)
     @JsonIgnore
     List<Plant> plants;
 }

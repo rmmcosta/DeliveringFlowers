@@ -1,10 +1,8 @@
 package com.rmmcosta.deliveringflowers.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rmmcosta.deliveringflowers.data.inventory.entities.Plant;
+import com.rmmcosta.deliveringflowers.data.inventory.entities.PlantDTO;
 import com.rmmcosta.deliveringflowers.service.PlantService;
-import com.rmmcosta.deliveringflowers.view.Views;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +26,11 @@ public class PlantController {
     @GetMapping("{id}")
     public ResponseEntity<PlantDTO> getPlant(@PathVariable Long id) {
         return new ResponseEntity<>(plantToPlantDTO(plantService.getPlant(id)), HttpStatus.OK);
+    }
+
+    @DeleteMapping("{id}")
+    public void deletePlant(@PathVariable Long id) {
+        plantService.deletePlant(id);
     }
 
     private PlantDTO plantToPlantDTO(Plant plant) {

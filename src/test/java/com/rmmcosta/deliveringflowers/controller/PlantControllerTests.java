@@ -5,7 +5,7 @@ import com.rmmcosta.deliveringflowers.data.delivery.entities.Delivery;
 import com.rmmcosta.deliveringflowers.data.inventory.FlowerRepository;
 import com.rmmcosta.deliveringflowers.data.inventory.ShrubRepository;
 import com.rmmcosta.deliveringflowers.data.inventory.entities.Flower;
-import com.rmmcosta.deliveringflowers.data.inventory.entities.Plant;
+import com.rmmcosta.deliveringflowers.data.inventory.entities.PlantDTO;
 import com.rmmcosta.deliveringflowers.data.inventory.entities.Shrub;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
