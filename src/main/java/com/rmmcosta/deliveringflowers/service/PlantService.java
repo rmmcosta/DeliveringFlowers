@@ -34,7 +34,7 @@ public class PlantService {
     }
 
     public boolean hasBeenDelivered(Long plantId) {
-        var isCompleted = plantRepository.findIsCompletedTrueById(plantId);
+        var isCompleted = plantRepository.existsPlantByIdAndDeliveryIsCompletedIsTrue(plantId);
         return isCompleted;
     }
 
