@@ -1,7 +1,8 @@
 package com.rmmcosta.deliveringflowers.service;
 
 import com.rmmcosta.deliveringflowers.data.delivery.entities.Delivery;
-import com.rmmcosta.deliveringflowers.data.delivery.entities.DeliveryRepositoryWithEntityManager;
+import com.rmmcosta.deliveringflowers.data.delivery.DeliveryRepositoryWithEntityManager;
+import com.rmmcosta.deliveringflowers.data.delivery.entities.RecipientAndPrice;
 import com.rmmcosta.deliveringflowers.data.inventory.entities.Plant;
 import com.rmmcosta.deliveringflowers.data.inventory.entities.PlantDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,21 @@ public class AnotherDeliveryService {
 
     public List<PlantDTO> getPlants(Long id) {
         return deliveryRepository.findPlants(id);
+    }
+
+    public List<Delivery> getAllDeliveriesByName(String name) {
+        return deliveryRepository.findAllDeliveriesByName(name);
+    }
+
+    public List<Plant> getAllDeliveriesAndPlantsByDeliveryName(String deliveryName) {
+        return deliveryRepository.findAllPlantsByDeliveryName(deliveryName);
+    }
+
+    public void deleteAllDeliveriesByName(String name) {
+        deliveryRepository.deleteAllDeliveriesByName(name);
+    }
+
+    public RecipientAndPrice getRecipientAndPricesSum(Long deliveryId) {
+        return deliveryRepository.getRecipientAndPricesSum(deliveryId);
     }
 }

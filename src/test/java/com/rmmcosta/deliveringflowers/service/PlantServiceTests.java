@@ -24,7 +24,7 @@ public class PlantServiceTests {
     @Autowired
     PlantService plantService;
     @Autowired
-    DeliveryRepository deliveryRepository;
+    DeliveryService deliveryService;
     @Autowired
     FlowerRepository flowerRepository;
     @Autowired
@@ -39,7 +39,7 @@ public class PlantServiceTests {
         delivery.setCompleted(true);
         delivery.setDeliveryDate(LocalDate.now());
         delivery.setDeliveryTime(LocalTime.MIDNIGHT);
-        delivery = deliveryRepository.save(delivery);
+        delivery = deliveryService.save(delivery);
 
         Flower flower = new Flower();
         flower.setName("Rosa");
@@ -63,7 +63,7 @@ public class PlantServiceTests {
     public void getPlantLazyLoadDelivery() {
         Long initCount = plantService.count();
         Plant plant = new Plant();
-        Delivery delivery = deliveryRepository.findAll().iterator().next();
+        Delivery delivery = deliveryService.getDeliveries().get(0);
         assertThrows(LazyInitializationException.class, () -> {
             System.out.println(delivery);
         });
@@ -76,5 +76,38 @@ public class PlantServiceTests {
             System.out.println(savedPlant);
         });
         Delivery associatedDelivery = savedPlant.getDelivery();
+    }
+
+    @Test
+    public void getAllPlantsCheaperThenWithSuccess() {
+        int initDeliveredPlants = plantService.getAllPlantsCheaperThan(BigDecimal.valueOf(50.0)).size();
+        Plant plant = new Plant();
+        plant.setName("Cheaper Plant");
+        plant.setPrice(BigDecimal.valueOf(35.5));
+        plantService.savePlant(plant);
+        assertEquals(initDeliveredPlants+1, plantService.getAllPlantsCheaperThan(BigDecimal.valueOf(50.0)).size());
+        Plant plant2 = new Plant();
+        plant2.setName("Expensive Plant");
+        plant2.setPrice(BigDecimal.valueOf(51.0));
+        plantService.savePlant(plant2);
+        assertEquals(initDeliveredPlants + 1, plantService.getAllPlantsCheaperThan(BigDecimal.valueOf(50.0)).size());
+    }
+
+    @Test
+    public void getPlantIsDeliveredInfoWithSuccess() {
+        Delivery delivery = new Delivery();
+        delivery.setName("Completa");
+        delivery.setAddress("Rua Luciano Cordeiro, 9, 4 Drt, 1150-211 Lisboa, Portugal");
+        delivery.setCompleted(true);
+        delivery.setDeliveryDate(LocalDate.now());
+        delivery.setDeliveryTime(LocalTime.MIDNIGHT);
+        Plant plant = new Plant();
+        plant.setName("Cheaper Plant 2");
+        plant.setPrice(BigDecimal.valueOf(35.5));
+        delivery.setPlants(List.of(plant));
+        delivery = deliveryService.save(delivery);
+        plant.setDelivery(delivery);
+        plant = plantService.savePlant(plant);
+        assertTrue(plantService.hasBeenDelivered(plant.getId()));
     }
 }

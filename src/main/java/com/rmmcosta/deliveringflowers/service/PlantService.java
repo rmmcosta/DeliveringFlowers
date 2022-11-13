@@ -5,6 +5,7 @@ import com.rmmcosta.deliveringflowers.data.inventory.entities.Plant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -30,5 +31,14 @@ public class PlantService {
 
     public Long count() {
         return plantRepository.count();
+    }
+
+    public boolean hasBeenDelivered(Long plantId) {
+        var isCompleted = plantRepository.findIsCompletedTrueById(plantId);
+        return isCompleted;
+    }
+
+    public List<Plant> getAllPlantsCheaperThan(BigDecimal maxPrice) {
+        return plantRepository.findAllByPriceLessThan(maxPrice);
     }
 }

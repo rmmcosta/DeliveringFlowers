@@ -19,4 +19,8 @@ public class DeliveryService {
     public void deleteDelivery(Long id) {
         deliveryRepository.deleteById(id);
     }
+
+    public Delivery save(Delivery delivery) {
+        return deliveryRepository.save(delivery);
+    }
 }
