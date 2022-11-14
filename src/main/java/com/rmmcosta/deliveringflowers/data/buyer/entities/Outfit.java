@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Data
 public class Outfit {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String hat;
     private String gloves;

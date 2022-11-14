@@ -45,7 +45,7 @@ public class DeliveringflowersApplication {
 		SpringApplication.run(DeliveringflowersApplication.class, args);
 	}
 
-	@Bean
+	//@Bean //disabled to use MySql database
 	public void insertData() {
 		Delivery delivery = new Delivery();
 		delivery.setName("Ricardo Costa");

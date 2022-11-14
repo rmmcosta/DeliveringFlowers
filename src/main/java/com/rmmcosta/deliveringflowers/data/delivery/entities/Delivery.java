@@ -19,7 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Delivery {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     @Column(name = "address_full", length = 500)

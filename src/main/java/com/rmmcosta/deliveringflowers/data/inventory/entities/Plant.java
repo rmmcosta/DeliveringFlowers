@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.rmmcosta.deliveringflowers.data.delivery.entities.Delivery;
 import com.rmmcosta.deliveringflowers.view.Views;
 import lombok.Data;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -15,7 +13,7 @@ import java.math.BigDecimal;
 @Data
 public class Plant {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonView(Views.Private.class)
     private Long id;
     @JsonView(Views.Public.class)
