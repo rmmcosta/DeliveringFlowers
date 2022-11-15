@@ -11,9 +11,9 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
 
-@Configuration
+//@Configuration
 public class DatabaseConfig {
-    @Autowired
+    /*@Autowired
     Environment env;
 
     @Bean
@@ -23,7 +23,7 @@ public class DatabaseConfig {
         DataSourceBuilder builder = DataSourceBuilder.create();
         builder.url(env.getProperty("com.rmmcosta.datasource.url"));
         return builder.build();
-    }
+    }*/
 
     /*
     @Autowired
